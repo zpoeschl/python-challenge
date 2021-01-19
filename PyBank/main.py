@@ -9,15 +9,8 @@ with open(csvpath) as csvfile:
 
     csvreader = csv.reader(csvfile, delimiter=',')
 
-    print(csvreader)
-
     # Read the header row
     csv_header = next(csvreader)
-    #print(f"CSV Header: {csv_header}")
-
-    # Read each row of data after the header
-    #for row in csvreader:
-        #print(row)
 
 # -----------------------------------------------------------------------
 # INSTRUCTIONS
@@ -33,9 +26,38 @@ with open(csvpath) as csvfile:
 #
 # -----------------------------------------------------------------------
 
+    # Calculate number of months
     month_count = 0
     
     for row in csvreader:
         month_count += 1
 
-    print(f"Total number of months: {month_count}")
+    # Calculate net total of Profit/Losses
+    net_total = 0
+    
+    for row in csvreader:
+        net_total += (int(row[1]))
+
+    # Calculate greatest increase in profits
+    greatest_increase = 0
+
+    for row in csvreader:
+        greatest_increase = max(int(row[1]))
+
+    #Calculate greatest decrease in profits
+    greatest_decrease = 0
+
+    for row in csvreader:    
+        greatest_decrease = min(int(row[1]))
+
+    # Print number of months
+    print(f'Total number of months: {month_count}')
+
+    # Print net total of Profit/Losses
+    print(f'Net total of Profit/Losses: {net_total}')
+
+    # Print greatest increase in profits
+    print(f'Greatest increase in profits: {greatest_increase}')
+
+    # Print greatest decrease in profits
+    print(f'Greatest decrease in profits: {greatest_decrease}')
