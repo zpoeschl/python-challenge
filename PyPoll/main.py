@@ -5,19 +5,22 @@ import csv
 
 csvpath = os.path.join('Resources', 'election_data.csv')
 
-with open(csvpath) as csvfile:
+# Lists to store data
+voter_id = []
+county = []
+candidate = []
 
+with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
-
-    print(csvreader)
 
     # Read the header row
     csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
 
-    # Read each row of data after the header
+    # Move CSV data into lists
     for row in csvreader:
-        print(row)
+        voter_id.append(row[0])
+        county.append(row[1])
+        candidate.append(row[2])
 
 # -----------------------------------------------------------------------
 # INSTRUCTIONS
@@ -32,3 +35,18 @@ with open(csvpath) as csvfile:
 #
 # -----------------------------------------------------------------------
 
+    # Calculate number of votes cast
+    total_votes = 0
+    
+    for row[0] in csvreader:
+        total_votes += 1
+
+    print(f'Total votes: {total_votes}')
+
+    # Identify unique candidate names
+    unique_candidate = []
+    for candidate in csvreader:
+        if candidate not in unique_candidate:
+            unique_candidate.append(row[2])
+
+    print(unique_candidate)

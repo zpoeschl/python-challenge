@@ -5,12 +5,20 @@ import csv
 
 csvpath = os.path.join('Resources', 'budget_data.csv')
 
-with open(csvpath) as csvfile:
+# Lists to store data
+months = []
+profit_losses = []
 
+with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
 
     # Read the header row
     csv_header = next(csvreader)
+
+    # Move CSV data into lists
+    for row in csvreader:
+        months.append(row[0])
+        profit_losses.append(row[1])
 
 # -----------------------------------------------------------------------
 # INSTRUCTIONS
@@ -36,7 +44,13 @@ with open(csvpath) as csvfile:
     net_total = 0
     
     for row in csvreader:
-        net_total += (int(row[1]))
+        net_total += sum(int(row[1]))
+
+    # Calculate changes in Profit/Losses
+    total_change = 0
+
+        # Calculate average change
+    average_change = 0
 
     # Calculate greatest increase in profits
     greatest_increase = 0
@@ -44,7 +58,7 @@ with open(csvpath) as csvfile:
     for row in csvreader:
         greatest_increase = max(int(row[1]))
 
-    #Calculate greatest decrease in profits
+    # Calculate greatest decrease in profits
     greatest_decrease = 0
 
     for row in csvreader:    
@@ -55,6 +69,9 @@ with open(csvpath) as csvfile:
 
     # Print net total of Profit/Losses
     print(f'Net total of Profit/Losses: {net_total}')
+
+    # Print average change in Profit/Losses
+    print(f'Average change: {average_change}')
 
     # Print greatest increase in profits
     print(f'Greatest increase in profits: {greatest_increase}')
