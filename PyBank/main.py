@@ -1,9 +1,9 @@
-# Import CSV
+# Modules
 
 import os
 import csv
 
-csvpath = os.path.join('..', 'Resources', 'budget_data.csv')
+csvpath = os.path.join('Resources', 'budget_data.csv')
 
 with open(csvpath) as csvfile:
 
@@ -13,11 +13,11 @@ with open(csvpath) as csvfile:
 
     # Read the header row
     csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
+    #print(f"CSV Header: {csv_header}")
 
     # Read each row of data after the header
-    for row in csvreader:
-        print(row)
+    #for row in csvreader:
+        #print(row)
 
 # -----------------------------------------------------------------------
 # INSTRUCTIONS
@@ -33,3 +33,9 @@ with open(csvpath) as csvfile:
 #
 # -----------------------------------------------------------------------
 
+    month_count = 0
+    
+    for row in csvreader:
+        month_count += 1
+
+    print(f"Total number of months: {month_count}")
