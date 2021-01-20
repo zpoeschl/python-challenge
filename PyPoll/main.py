@@ -50,6 +50,20 @@ with open(csvpath, newline='') as csvfile:
         
         for name in unique_candidate:
             print(name)
-            #print(f'{name}: {percent_vote} 'f'({total_votes})')
 
     unique(candidate)
+
+    # Calculate total number of votes each candidate won
+    total_khan = candidate.count("Khan")
+    total_correy = candidate.count("Correy")
+    total_li = candidate.count("Li")
+    total_otooley = candidate.count("O'Tooley")
+
+    # Calculate percentage of votes each candidate won
+    percent_khan = ((total_khan / total_votes) * 100)
+    percent_correy = ((total_correy / total_votes) * 100)
+    percent_li = ((total_li / total_votes) * 100)
+    percent_otooley = ((total_otooley / total_votes) * 100)
+
+    # Determine the election winner
+    #winner = max(candidate_vote_total)
