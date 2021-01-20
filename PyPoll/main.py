@@ -40,10 +40,16 @@ with open(csvpath, newline='') as csvfile:
 
     print(f'Total votes: {total_votes}')
 
-    # Identify unique candidate names
-    unique_candidate = []
-    for candidate in csvreader:
-        if candidate not in unique_candidate:
-            unique_candidate.append(candidate)
+    # Identify and print unique candidate names
+    def unique(candidate):
+        unique_candidate = []
 
-    print(unique_candidate)
+        for name in candidate:
+            if name not in unique_candidate:
+                unique_candidate.append(name)
+        
+        for name in unique_candidate:
+            print(name)
+            #print(f'{name}: {percent_vote} 'f'({total_votes})')
+
+    unique(candidate)

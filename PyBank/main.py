@@ -15,7 +15,7 @@ with open(csvpath, newline='') as csvfile:
     # Read the header row
     csv_header = next(csvreader)
 
-    # Move CSV data into lists
+    # Move CSV data into lists and treat profit/losses as number(integer)
     for row in csvreader:
         months.append(row[0])
         profit_losses.append(int(row[1]))
@@ -38,8 +38,6 @@ with open(csvpath, newline='') as csvfile:
     month_count = len(months)
 
     # Calculate net total of Profit/Losses
-    net_total = 0
-
     net_total = sum(profit_losses)
 
     # Calculate changes in Profit/Losses
@@ -49,16 +47,10 @@ with open(csvpath, newline='') as csvfile:
     average_change = 0
 
     # Calculate greatest increase in profits
-    greatest_increase = 0
+    greatest_increase = max(profit_losses)
 
-    for row in csvreader:
-        greatest_increase = max(int(row[1]))
-
-    # Calculate greatest decrease in profits
-    greatest_decrease = 0
-
-    for row in csvreader:    
-        greatest_decrease = min(int(row[1]))
+    # Calculate greatest decrease in profits  
+    greatest_decrease = min(profit_losses)
 
     # Print number of months
     print(f'Total number of months: {month_count}')
