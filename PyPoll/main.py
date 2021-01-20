@@ -36,10 +36,7 @@ with open(csvpath, newline='') as csvfile:
 # -----------------------------------------------------------------------
 
     # Calculate number of votes cast
-    total_votes = 0
-    
-    for row[0] in csvreader:
-        total_votes += 1
+    total_votes = len(voter_id)
 
     print(f'Total votes: {total_votes}')
 
@@ -47,6 +44,6 @@ with open(csvpath, newline='') as csvfile:
     unique_candidate = []
     for candidate in csvreader:
         if candidate not in unique_candidate:
-            unique_candidate.append(row[2])
+            unique_candidate.append(candidate)
 
     print(unique_candidate)

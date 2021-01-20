@@ -18,7 +18,7 @@ with open(csvpath, newline='') as csvfile:
     # Move CSV data into lists
     for row in csvreader:
         months.append(row[0])
-        profit_losses.append(row[1])
+        profit_losses.append(int(row[1]))
 
 # -----------------------------------------------------------------------
 # INSTRUCTIONS
@@ -35,16 +35,12 @@ with open(csvpath, newline='') as csvfile:
 # -----------------------------------------------------------------------
 
     # Calculate number of months
-    month_count = 0
-    
-    for row in csvreader:
-        month_count += 1
+    month_count = len(months)
 
     # Calculate net total of Profit/Losses
     net_total = 0
-    
-    for row in csvreader:
-        net_total += sum(int(row[1]))
+
+    net_total = sum(profit_losses)
 
     # Calculate changes in Profit/Losses
     total_change = 0
