@@ -26,17 +26,22 @@ with open(csvpath, newline='') as csvfile:
     # Calculate net total of Profit/Losses
     net_total = sum(profit_losses)
 
-    # Calculate changes in Profit/Losses
-    total_change = 0
+    # Calculate changes in Profit/Losses and store in list
+    total_change = []
 
-    for 
+    for num in profit_losses:
+        previous_num = profit_losses[profit_losses.index(num)-1]
+        change = num - previous_num
 
+        total_change.append(int(change))
 
+    total_change.pop(0)
+    total_change.insert(0, int(0))
 
-
+    sum_total_change = sum(total_change)
 
         # Calculate average change
-    average_change = mean(total_change)
+    average_change = round(float(int(sum_total_change) / int(85)), 2)
 
     # Calculate greatest increase in profits
     greatest_increase = max(total_change)
