@@ -75,9 +75,9 @@ with open(csvpath, newline='') as csvfile:
     winner = max(votes_per_candidate)
 
 # print results in terminal
-print(f'Total votes: {total_votes})
+print(f'Total votes: {total_votes}')
 for lst in combined_results:
-    print(f'{lst[0]}: {lst[1]}00% {lst[2]})
+    print(f'{lst[0]}: {lst[1]}00% {lst[2]}')
 print(f'Winner: {winner}')
 
 # export to text file
