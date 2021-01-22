@@ -20,20 +20,6 @@ with open(csvpath, newline='') as csvfile:
         months.append(row[0])
         profit_losses.append(int(row[1]))
 
-# -----------------------------------------------------------------------
-# INSTRUCTIONS
-# Calculate the following:
-#       The total number of months included in the dataset
-#       The net total amount of "Profit/Losses" over the entire period
-#       The changes in "Profit/Losses" over the entire period
-#               Then find the average of those changes
-#       The greatest increase in profits (date and amount) over the entire period
-#       The greatest decrease in losses (date and amount) over the entire period
-#
-# Final script should both print the analysis to the terminal and export a text file with the results
-#
-# -----------------------------------------------------------------------
-
     # Calculate number of months
     month_count = len(months)
 
@@ -43,26 +29,35 @@ with open(csvpath, newline='') as csvfile:
     # Calculate changes in Profit/Losses
     total_change = 0
 
+    for 
+
+
+
+
+
         # Calculate average change
-    average_change = 0
+    average_change = mean(total_change)
 
     # Calculate greatest increase in profits
-    greatest_increase = max(profit_losses)
+    greatest_increase = max(total_change)
 
     # Calculate greatest decrease in profits  
-    greatest_decrease = min(profit_losses)
+    greatest_decrease = min(total_change)
 
-    # Print number of months
+    # Print results to terminal
     print(f'Total number of months: {month_count}')
-
-    # Print net total of Profit/Losses
     print(f'Net total of Profit/Losses: {net_total}')
-
-    # Print average change in Profit/Losses
     print(f'Average change: {average_change}')
-
-    # Print greatest increase in profits
     print(f'Greatest increase in profits: {greatest_increase}')
-
-    # Print greatest decrease in profits
     print(f'Greatest decrease in profits: {greatest_decrease}')
+
+# export results to text file
+output_path = os.path.join("Analysis", "PyBank.txt")
+
+with open(output_path, 'w') as text:
+
+    print(f'Total number of months: {month_count}', file = text)
+    print(f'Net total of Profit/Losses: {net_total}', file = text)
+    print(f'Average change: {average_change}', file = text)
+    print(f'Greatest increase in profits: {greatest_increase}', file = text)
+    print(f'Greatest decrease in profits: {greatest_decrease}', file = text)

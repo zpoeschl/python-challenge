@@ -5,7 +5,7 @@ import csv
 
 csvpath = os.path.join('Resources', 'election_data.csv')
 
-# Lists to store data
+# Lists to store CSV data
 voter_id = []
 county = []
 candidate = []
@@ -22,48 +22,70 @@ with open(csvpath, newline='') as csvfile:
         county.append(row[1])
         candidate.append(row[2])
 
-# -----------------------------------------------------------------------
-# INSTRUCTIONS
-# Analyze the following:
-#       The total number of votes cast
-#       A complete list of candidates who received votes
-#       The percentage of votes each candidate won
-#       The total number of votes each candidate won
-#       The winner of the election based on popular vote
-#
-# Final script should both print the analysis to the terminal and export a text file with the results
-#
-# -----------------------------------------------------------------------
-
     # Calculate number of votes cast
     total_votes = len(voter_id)
 
     print(f'Total votes: {total_votes}')
 
-    # Identify and print unique candidate names
+    # Identify and print unique candidate names and store in a list
+    unique_candidate = []
     def unique(candidate):
-        unique_candidate = []
 
         for name in candidate:
             if name not in unique_candidate:
                 unique_candidate.append(name)
         
         for name in unique_candidate:
-            print(name)
+            return name
 
     unique(candidate)
 
-    # Calculate total number of votes each candidate won
-    total_khan = candidate.count("Khan")
-    total_correy = candidate.count("Correy")
-    total_li = candidate.count("Li")
-    total_otooley = candidate.count("O'Tooley")
+    # Calculate total number of votes each candidate won and store in a list
+    votes_per_candidate = []
+    def count_votes(unique_candidate):
 
-    # Calculate percentage of votes each candidate won
-    percent_khan = ((total_khan / total_votes) * 100)
-    percent_correy = ((total_correy / total_votes) * 100)
-    percent_li = ((total_li / total_votes) * 100)
-    percent_otooley = ((total_otooley / total_votes) * 100)
+        # set initial count
+        vote_total = 0
 
+        for name in unique_candidate:
+            for vote in candidate:
+                if name == vote:
+                    vote_total = int(vote_total) + 1
+                
+            votes_per_candidate.append(vote_total)
+
+            # reset count
+            vote_total = 0
+
+        return votes_per_candidate
+
+    count_votes(candidate)
+
+    # Calculate percentage of votes each candidate won and store in a list
+    vote_percentage = []
+
+    for x in (votes_per_candidate):
+        percentage = round((float(int(x) / int(total_votes)) * 100), 3)
+
+        vote_percentage.append(percentage)
+
+    combined_results = tuple(zip(unique_candidate, votes_per_candidate, vote_percentage))
+    
     # Determine the election winner
-    #winner = max(candidate_vote_total)
+    winner = max(votes_per_candidate)
+
+# print results in terminal
+print(f'Total votes: {total_votes})
+for lst in combined_results:
+    print(f'{lst[0]}: {lst[1]}00% {lst[2]})
+print(f'Winner: {winner}')
+
+# export to text file
+output_path = os.path.join('Analysis', 'PyPoll.txt')
+
+with open(output_path, 'w') as text:
+
+    print(f'Total votes: {total_votes}', file = text)
+    for lst in combined_results:
+        print(f'{lst[0]}: {lst[1]}00% {lst[2]}', file = text)
+    print(f'Winner: {winner}', file = text)
