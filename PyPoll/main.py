@@ -25,7 +25,7 @@ with open(csvpath, newline='') as csvfile:
     # Calculate number of votes cast
     total_votes = len(voter_id)
 
-    print(f'Total votes: {total_votes}')
+    #print(f'Total votes: {total_votes}')
 
     # Identify and print unique candidate names and store in a list
     unique_candidate = []
@@ -59,7 +59,7 @@ with open(csvpath, newline='') as csvfile:
 
         return votes_per_candidate
 
-    count_votes(candidate)
+    count_votes(unique_candidate)
 
     # Calculate percentage of votes each candidate won and store in a list
     vote_percentage = []
@@ -73,12 +73,14 @@ with open(csvpath, newline='') as csvfile:
     
     # Determine the election winner
     winner = max(votes_per_candidate)
+    candidate_list = votes_per_candidate.index(winner)
+    winning_candidate = unique_candidate[candidate_list]
 
 # print results in terminal
 print(f'Total votes: {total_votes}')
 for lst in combined_results:
-    print(f'{lst[0]}: {lst[1]}00% {lst[2]}')
-print(f'Winner: {winner}')
+    print(f'{lst[0]}: {lst[1]} {lst[2]}00%')
+print(f'Winner: {winning_candidate}')
 
 # export to text file
 output_path = os.path.join('Analysis', 'PyPoll.txt')
@@ -87,5 +89,5 @@ with open(output_path, 'w') as text:
 
     print(f'Total votes: {total_votes}', file = text)
     for lst in combined_results:
-        print(f'{lst[0]}: {lst[1]}00% {lst[2]}', file = text)
-    print(f'Winner: {winner}', file = text)
+        print(f'{lst[0]}: {lst[1]} {lst[2]}00%', file = text)
+    print(f'Winner: {winning_candidate}', file = text)
